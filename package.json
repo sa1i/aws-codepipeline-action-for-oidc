@@ -1,6 +1,6 @@
 {
     "name": "aws-codepipeline-action-for-oidc",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "This GitHub Actions will help you trigger a pipeline in your AWS CodePipeline with OIDC Connection",
     "main": "index.js",
     "scripts": {
