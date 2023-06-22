@@ -1,5 +1,6 @@
-var AWS = require("aws-sdk");
-var core = require("@actions/core");
+import * as AWS from "aws-sdk";
+import * as core from "@actions/core";
+
 
 try {
   var awsRegion = core.getInput("aws-region");
@@ -7,10 +8,10 @@ try {
   var awssecretKey = core.getInput("aws-secret-key");
   var pipelineName = core.getInput("pipeline-name");
 
-  AWS.config = new AWS.Config();
-  AWS.config.region = awsRegion;
-  AWS.config.accessKeyId = awsAccessKey;
-  AWS.config.secretAccessKey = awssecretKey;
+  let AWSConfig = new AWS.Config();
+  AWSConfig.region = awsRegion;
+  AWSConfig.accessKeyId = awsAccessKey;
+  AWSConfig.secretAccessKey = awssecretKey;
 
   var codepipeline = new AWS.CodePipeline();
   var pipeline = {
@@ -25,5 +26,10 @@ try {
     }
   });
 } catch (error) {
-  core.setFailed(error.message);
+  if (error instanceof Error) {
+    core.setFailed(error.message);
+  } else {
+    // Handle other types of errors or unknown values
+    core.setFailed('An unknown error occurred.');
+  }
 }
