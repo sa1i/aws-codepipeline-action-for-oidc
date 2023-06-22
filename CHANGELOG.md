@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/just-ak/aws-codepipeline-action-for-oidc/compare/v1.0.11...v1.1.0) (2023-06-22)
+
+
+### Features
+
+* WebPackBuild ([f2bfbd8](https://github.com/just-ak/aws-codepipeline-action-for-oidc/commit/f2bfbd8d6c6bae4cd22f3bd224bbd53233706499))
+
+
+### Bug Fixes
+
+* Update Release ([65af568](https://github.com/just-ak/aws-codepipeline-action-for-oidc/commit/65af568525f1fb835b43a9a8d378686f80cf95e1))
+
 ### [1.0.11](https://github.com/just-ak/aws-codepipeline-action-for-oidc/compare/v1.0.10...v1.0.11) (2023-06-22)
 
 ### [1.0.10](https://github.com/just-ak/aws-codepipeline-action-for-oidc/compare/v1.0.9...v1.0.10) (2023-06-22)
