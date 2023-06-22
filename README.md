@@ -25,14 +25,17 @@ Create an IAM user with `codepipeline:StartPipelineExecution` permission. You ma
 }
 ```
 
-### GitHub Secrets
+### If using GitHub Secrets and not OIDC
+
+Additional Parameters can be used, but not recommended.
+
+    aws-access-key: ${{ secrets.AWS_PIPELINE_ACCESS_KEY }}
+    aws-secret-key: ${{ secrets.AWS_PIPELINE_SECRET_KEY }}
 
 After you create the IAM user with the right permission, add two variables below in your GitHub repository secrets area:
 
 - `AWS_PIPELINE_ACCESS_KEY`: the Access Key ID for the user that you just created
 - `AWS_PIPELINE_SECRET_KEY`: the Secret Key for the user that you just created
-
-![](./docs/images/gh-secrets.png)
 
 ## Usage
 
@@ -40,7 +43,7 @@ After you create the IAM user with the right permission, add two variables below
 
 **Note**:
 
-- Please check the latest available version [here](https://github.com/marketplace/actions/aws-codepipeline-trigger) and replace it with `X.X.X` in the code examples below.
+- Please check the latest available version [here](https://github.com/marketplace/actions/aws-codepipeline-trigger-for-oidc) and replace it with `X.X.X` in the code examples below.
 
 - Identify in which AWS region your pipeline is located. Use that region name for `aws-region` key below. AWS regions list is available [here](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
 
@@ -49,11 +52,9 @@ jobs:
   deploy:
     steps:
       - name: Trigger AWS CodePipeline
-        uses: zulhfreelancer/aws-codepipeline-action@vX.X.X
+        uses: just-ak/aws-codepipeline-action-for-oidc@v1.0.8
         with:
           aws-region: "ap-southeast-1"
-          aws-access-key: ${{ secrets.AWS_PIPELINE_ACCESS_KEY }}
-          aws-secret-key: ${{ secrets.AWS_PIPELINE_SECRET_KEY }}
           pipeline-name: "your-pipeline-name"
 ```
 
@@ -72,17 +73,22 @@ jobs:
     needs: job1
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+
+      - name: Assume AWS Role
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+          role-to-assume: arn:aws:iam::${{ env.YOUR_ACCOUNT }}:role/trigger-aws-code-pipeline-role
+          role-session-name: trigger-aws-code-pipeline
+
       - name: Trigger AWS CodePipeline
-        uses: zulhfreelancer/aws-codepipeline-action@vX.X.X
+        uses: just-ak/aws-codepipeline-action-for-oidc@v1.0.8
         if: github.ref == 'refs/heads/your-branch-name'
         with:
           aws-region: "ap-southeast-1"
-          aws-access-key: ${{ secrets.AWS_PIPELINE_ACCESS_KEY }}
-          aws-secret-key: ${{ secrets.AWS_PIPELINE_SECRET_KEY }}
           pipeline-name: "your-pipeline-name"
 ```
 
 ## Contribute
 
-Feel free to fork and submit PRs for this project. I'm more than happy to review and merge it. If you have any questions regarding contributing, feel free to reach out to me on [Twitter](https://twitter.com/zulhhandyplast).
+Feel free to fork and submit PRs for this project. I'm more than happy to review and merge it
