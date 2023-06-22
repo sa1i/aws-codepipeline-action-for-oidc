@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.9](https://github.com/just-ak/aws-codepipeline-action-for-oidc/compare/v1.0.8...v1.0.9) (2023-06-22)
+
+
+### Bug Fixes
+
+* Autoamate Release ([539d11d](https://github.com/just-ak/aws-codepipeline-action-for-oidc/commit/539d11dcad93356b9c8c1b3ea45d77c24e0544af))
+
 ### 1.0.8 (2023-06-22)
 
 
