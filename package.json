@@ -1,11 +1,12 @@
 {
-    "name": "aws-codepipeline-action",
+    "name": "aws-codepipeline-action-for-oidc",
     "version": "1.0.7",
-    "description": "This GitHub Actions will help you trigger a pipeline in your AWS CodePipeline - assumming you already have the pipeline. This will not create the pipeline for you.",
+    "description": "This GitHub Actions will help you trigger a pipeline in your AWS CodePipeline with OIDC Connection",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\"",
-        "build": "tsc"
+        "build": "tsc",
+        "release" : "standard-version && tsc"
     },
     "keywords": [
         "aws",
@@ -15,7 +16,7 @@
         "trigger"
     ],
     "repository": {
-        "url": "https://github.com/zulhfreelancer/aws-codepipeline-action",
+        "url": "https://github.com/just-ak/aws-codepipeline-action-for-oidc",
         "type": "git"
     },
     "author": "",
@@ -24,5 +25,31 @@
         "@actions/core": "^1.2.4",
         "@actions/github": "^3.0.0",
         "aws-sdk": "^2.705.0"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^17.6.5",
+        "@commitlint/config-conventional": "^17.6.5",
+        "husky": "^8.0.3",
+        "standard-version": "^9.5.0"
+    },
+    "husky": {
+        "hooks": {
+            "commit-msg": "commitlint -E  HUSKY_GIT_PARAMS"
+        }
+    },
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ],
+        "rules": {
+            "subject-case": [
+                2,
+                "never",
+                [
+                    "start-case",
+                    "pascal-case"
+                ]
+            ]
+        }
     }
 }
