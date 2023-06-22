@@ -52,7 +52,7 @@ jobs:
   deploy:
     steps:
       - name: Trigger AWS CodePipeline
-        uses: just-ak/aws-codepipeline-action-for-oidc@v1.0.8
+        uses: just-ak/aws-codepipeline-action-for-oidc@v1.1.0
         with:
           aws-region: "ap-southeast-1"
           pipeline-name: "your-pipeline-name"
@@ -82,8 +82,7 @@ jobs:
           role-session-name: trigger-aws-code-pipeline
 
       - name: Trigger AWS CodePipeline
-        uses: just-ak/aws-codepipeline-action-for-oidc@v1.0.8
-        if: github.ref == 'refs/heads/your-branch-name'
+        uses: just-ak/aws-codepipeline-action-for-oidc@v1.1.0
         with:
           aws-region: "ap-southeast-1"
           pipeline-name: "your-pipeline-name"
