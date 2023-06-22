@@ -5,10 +5,10 @@ inputs:
     description: "AWS Region where the CodePipeline is located"
     required: true
   aws-access-key:
-    description: "AWS Access Key ID to trigger CodePipeline"
+    description: "AWS Access Key ID to trigger CodePipeline (Omit if using OIDC)"
     required: false
   aws-secret-key:
-    description: "AWS Secret Key to trigger CodePipeline"
+    description: "AWS Secret Key to trigger CodePipeline (Omit if using OIDC)"
     required: false
   pipeline-name:
     description: "The name of the pipeline"
