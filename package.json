@@ -6,7 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\"",
         "build": "tsc",
-        "release": "standard-version && tsc"
+        "release": "standard-version && tsc && it push --follow-tags origin main "
     },
     "keywords": [
         "aws",
