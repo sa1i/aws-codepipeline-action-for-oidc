@@ -5,13 +5,20 @@ import * as core from "@actions/core";
 try {
   var awsRegion = core.getInput("aws-region");
   var awsAccessKey = core.getInput("aws-access-key");
-  var awssecretKey = core.getInput("aws-secret-key");
+  var awsSecretKey = core.getInput("aws-secret-key");
   var pipelineName = core.getInput("pipeline-name");
 
+  console.log("debug =========>")
+  console.log(awsRegion);
+  console.log(awsAccessKey);
+  console.log(awsSecretKey);
+  console.log(pipelineName);
+  console.log("debug <=========")
+  
   let AWSConfig = new AWS.Config();
   AWSConfig.region = awsRegion;
   AWSConfig.accessKeyId = awsAccessKey;
-  AWSConfig.secretAccessKey = awssecretKey;
+  AWSConfig.secretAccessKey = awsSecretKey;
 
   var codepipeline = new AWS.CodePipeline();
   var pipeline = {
